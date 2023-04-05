@@ -14,7 +14,7 @@ const PhotoController = {
         }
         const result = ModelPhoto.uploadPhoto(data)
         try {
-            response(res,200,true,result,"upload photo success")
+            response(res,200,true,{data,result},"upload photo success")
         } catch (error) {
             response(res, 404, false, error, "upload photo fail")
         }
@@ -30,7 +30,7 @@ const PhotoController = {
         }
         const result = ModelPhoto.uploadPhoto(data)
         try {
-            response(res,200,true,result,"upload photo success")
+            response(res,200,true,{data,result},"upload photo success")
         } catch (error) {
             response(res, 404, false, error, "upload photo fail")
         }
