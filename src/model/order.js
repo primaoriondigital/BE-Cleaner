@@ -52,7 +52,7 @@ const writeApprovedArea = (order_id) => {
 const writeOrderOngoing = (order_id) => {
     // const {order_id,id} = data
     return new Promise((resolve, reject) => {
-        Pool.query(`UPDATE "order" SET order_status='order on going' WHERE order_id='${order_id}'`,(err,result)=>{
+        Pool.query(`UPDATE "order" SET order_status='Order on Going' WHERE order_id='${order_id}'`,(err,result)=>{
             if(!err){
                 resolve(result)
             } else {
