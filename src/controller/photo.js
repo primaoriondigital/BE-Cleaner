@@ -12,7 +12,7 @@ const PhotoController = {
             photo: req.body.photo,
             date: `${date} ${time}`
         }
-        const result = ModelPhoto.uploadPhoto(data)
+        const result = await ModelPhoto.uploadPhoto(data)
         try {
             response(res,200,true,{data,result},"upload photo success")
         } catch (error) {
@@ -21,10 +21,10 @@ const PhotoController = {
     },photoAfter: async (req,res,next) => {
         const data = {
             order_id: req.body.order_id,
-            status: 'after',
-            photo: req.body.photo
+            status: 'before',
+            photo: req.body.photo,
         }
-        const result = ModelPhoto.uploadPhoto(data)
+        const result = await ModelPhoto.uploadPhoto(data)
         try {
             response(res,200,true,{data,result},"upload photo success")
         } catch (error) {
@@ -38,6 +38,18 @@ const PhotoController = {
         try {
             const result = await ModelPhoto.getPhoto(data)
             response(res,200,true,result.rows,"upload photo success")
+        } catch (error) {
+            response(res, 404, false, error, "upload photo fail")
+        }
+    },photoCleaner: async (req,res,next) => {
+        const data = {
+            order_id: req.body.order_id,
+            status: 'cleaner',
+            photo: req.body.photo
+        }
+        const result = await ModelPhoto.uploadPhoto(data)
+        try {
+            response(res,200,true,{data,result},"upload photo success")
         } catch (error) {
             response(res, 404, false, error, "upload photo fail")
         }

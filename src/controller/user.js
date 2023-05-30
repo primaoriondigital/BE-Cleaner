@@ -30,7 +30,27 @@ const UsersController = {
         console.log(err)
         response(res,404,false,err,"register fail")
     }
-    },
+    },register1: async (req,res,next) => {
+        let data = {
+            nama : req.body.nama,
+            nomor_telp : req.body.nomor_telp,
+            email : req.body.email,
+            tempat_tgl : req.body.tempat_tgl,
+            kendaraan : req.body.kendaraan,
+            alamat : req.body.alamat,
+            nik: req.body.nik            
+        }
+        try {
+            const result = await ModelUser.addUser1(data)
+            if (result){
+                console.log(result)
+                response(res,200,true,data,"signup cleaner success")
+            }
+        } catch (err){
+            console.log(err)
+            response(res,404,false,err,"signup cleaner fail")
+        }
+        },
     login: async (req,res,next)=>{
         try {
             console.log('phone',req.body.phone)

@@ -36,6 +36,19 @@ const addUser = (data) => {
     })
 }
 
+const addUser1 = (data) => {
+    const {nama,nomor_telp,email,tempat_tgl,nik,alamat} = data
+    return new Promise((resolve, reject) => {
+        Pool.query(`INSERT INTO "signup_cleaner" (nama,nomor_telp,email,tempat_tgl,nik,alamat) VALUES('${nama}',${nomor_telp},'${email}','${tempat_tgl}','${nik}','${alamat}')`,(err,result)=>{
+            if(!err){
+                resolve(result)
+            } else {
+                reject(err)
+            }
+        })
+    })
+}
+
 const Rating = (id) => {
     // const {id,name,phone,role,password,email,date_birth,photo_user,review_status,domisili,address} = data
     return new Promise((resolve, reject) => {
@@ -60,4 +73,4 @@ const findId = (id) => {
     }))
 }
 
-module.exports = {findName,addUser,Rating,findAll,findId}
+module.exports = {findName,addUser,Rating,findAll,findId,addUser1}

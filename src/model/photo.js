@@ -1,9 +1,12 @@
 const Pool = require("./../config/db");
 
 const uploadPhoto = (data) => {
-    const {order_id,photo,status,date} = data
+    const {order_id,photo,status} = data
+    const now = new Date();
+    const date = now.toLocaleDateString()
+    const time = now.toLocaleTimeString()
     return new Promise ((resolve,reject)=>
-        Pool.query(`INSERT INTO "review2" (order_id,photo,status,date) VALUES ('${order_id}','${photo}','${status}','${date}')`,(err,result)=>{
+        Pool.query(`INSERT INTO "review2" (order_id,photo,status,date) VALUES ('${order_id}','${photo}','${status}','${date}_${time}')`,(err,result)=>{
             if(!err){
                 resolve(result)
                 console.log(data)
