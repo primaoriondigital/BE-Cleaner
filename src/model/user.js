@@ -73,4 +73,16 @@ const findId = (id) => {
     }))
 }
 
-module.exports = {findName,addUser,Rating,findAll,findId,addUser1}
+const inputId = (data) => {
+    const {url,nik} = data
+    return new Promise ((resolve,reject)=>
+    Pool.query(`UPDATE "signup_cleaner" SET photo_ktp='${url}' WHERE nik='${nik}'`,(err,result)=>{
+        if(!err){
+            resolve(result)
+        } else {
+            reject(err)
+        }
+}))
+}
+
+module.exports = {findName,addUser,Rating,findAll,findId,addUser1,inputId}

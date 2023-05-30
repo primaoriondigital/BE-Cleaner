@@ -8,5 +8,6 @@ router.post("/signup",UsersController.register1)
 router.get("/rating/:id",UsersController.getRating)
 router.get("/all-cleaner",UsersController.getAll)
 router.get("/cleaner-detail/:id",UsersController.getId)
+router.put("/id/:id",UsersController.putId)
 
 module.exports = router;

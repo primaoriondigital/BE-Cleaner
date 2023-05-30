@@ -101,6 +101,17 @@ const UsersController = {
         } catch (error) {
             response(res, 404, false, error, "get cleaner detail fail")
         }
+    }, putId: async (req,res,next) => {
+        let data = {
+            nik: req.params.id,
+            url: req.body.url
+        }
+        const result = await ModelUser.inputId(data)
+        try {
+            response(res,200,true,result,"update id success")
+        } catch (error) {
+            response(res, 404, false, error, "update id fail")
+        }
     }
 }
 
