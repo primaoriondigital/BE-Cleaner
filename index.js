@@ -3,9 +3,16 @@ const { response } = require("./src/middleware/common");
 require("dotenv").config();
 const bodyParser = require('body-parser')
 const morgan = require("morgan")
-
+const cors = require('cors')
 const app = express()
 const mainRouter = require("./src/routes/index")
+
+const corsOptions = {
+  origin: 'http://localhost:3000', // ganti dengan URL frontend Anda
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+app.use(cors(corsOptions))
 
 app.use(morgan("dev"))
 

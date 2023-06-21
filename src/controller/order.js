@@ -80,6 +80,13 @@ const OrderController = {
         } catch (error) {
             response(res,404,false,error,"get booked order fail")
         }
+    },getByNik: async(req,res,next) => {
+        const result = await ModelOrder.getOrderByNik()
+        try {            
+            response(res,200,true,result.rows,"get order success")
+        } catch (error) {
+            response(res,404,false,error,"get order fail")
+        }
     }
 }
 

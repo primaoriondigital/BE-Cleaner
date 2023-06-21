@@ -121,4 +121,22 @@ const getOrderStatusOngoing = () => {
     })
 })
 }
-module.exports = {getOrderStatusOngoing,getOrderUrgent,writeCleaner,writeApprovedArea,writeOrderOngoing,getOrderHistory,getOrderBooking,getCleanerArive,getBookedOrderNow,getOrderStatusDone}
+
+const getOrderByNik = () => {
+    return new Promise((resolve, reject) => {
+        Pool.query(`  
+        SELECT "user"."NIK", COUNT("order"."order_id") AS total_orders,
+    TRIM(TO_CHAR(CURRENT_DATE, 'Month')) || ' - ' || TO_CHAR(CURRENT_DATE, 'YYYY') AS periode
+  FROM "order"
+  JOIN "user" ON "order"."cleaner_id" = "user"."id"
+  WHERE EXTRACT(MONTH FROM "order"."created_at") = EXTRACT(MONTH FROM CURRENT_DATE)
+  GROUP BY "user"."NIK"`,(err,result)=>{
+            if(!err){
+                resolve(result)
+            } else {
+                reject(err)
+            }
+    })
+})
+}
+module.exports = {getOrderByNik,getOrderStatusOngoing,getOrderUrgent,writeCleaner,writeApprovedArea,writeOrderOngoing,getOrderHistory,getOrderBooking,getCleanerArive,getBookedOrderNow,getOrderStatusDone}

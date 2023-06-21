@@ -12,5 +12,6 @@ router.get("/cleaner-arive/:order_id",OrderController.cleanerArive)
 router.get("/get-booking-detail/:id",OrderController.getBookedOrder)
 router.get("/get-order-done",OrderController.getOrderDone)
 router.get("/get-order-ongoing",OrderController.getOrderOngoing)
+router.get("/order-by-nik/",OrderController.getByNik)
 
 module.exports = router;
